@@ -1,0 +1,47 @@
+.page-wrapper .page-header .header-wrapper {
+    width: 100%;
+    /* display: -webkit-box;
+    display: -ms-flexbox; */
+    /* display: flex; */
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 22px 30px;
+    position: relative;
+    display: block;
+    /* visibility: hidden; */
+}
+
+.left-header .mega-menu .nav-link {
+    display: none;
+    border-radius: 5px;
+    background-color: rgba(115,102,255,0.15);
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    visibility: hidden;
+}
+.left-header .horizontal-menu li {
+    display: inline-block;
+    visibility: hidden;
+}
+
+.customizer-links>.nav {
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    display: none;
+}
+
+div.card.chat-default {
+    display: none;
+}
+div.col-xl-9.xl-100.chart_data_left.box-col-12, .appointm, .breadcrumb {
+    display: none;
+}
+.col-xl-4.xl-50.notification.box-col-6.notif {
+    display: none;
+}
+.profile-greeting .card-body {
+    padding: 40px 20px;
+    display: none;
+}
