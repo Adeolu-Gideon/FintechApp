@@ -1093,21 +1093,29 @@
         <!-- Plugin used-->
 
         <script>
+            // var Email = mail;
+            var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
             var user = JSON.parse(localStorage.getItem("userDetails"))
+            var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
+            var logedUser = user.indexOf(loggedInUser) + 1
             // let users = user.find((val) => val.email == )
-                var User = user[0].firstName
-                Fname.value = `${User}`
+                // var User = user[0].firstName
+                
+                Fname.value = `${dLogU.firstName}`
+                Lname.value = `${dLogU.lastName}`
+                Email.value = `${dLogU.mail}`
+                Acct.value = `${dLogU.acctNo}`
 
-                var user = JSON.parse(localStorage.getItem("userDetails"))
-                    var User = user[0].lastName
-                    Lname.value = `${User}`
+                // var user = JSON.parse(localStorage.getItem("userDetails"))
+                    //   Lname.value = user[logedUser].lastName
+                //     Lname.value = `${User}`
 
-                var user = JSON.parse(localStorage.getItem("userDetails"))
-                    var User = user[0].mail
-                    Email.value = `${User}`
-                var user = JSON.parse(localStorage.getItem("userDetails"))
-                    var User = user[0].acctNo
-                    Acct.value = `${User}`
+                // var user = JSON.parse(localStorage.getItem("userDetails"))
+                //     var User = user[0].mail
+                //     Email.value = `${User}`
+                // var user = JSON.parse(localStorage.getItem("userDetails"))
+                //     var User = user[0].acctNo
+                //     Acct.value = `${User}`
                 // alert(User)
             function logOut() {
                 if (confirm("Are You Sure You Want To Logout?")) {

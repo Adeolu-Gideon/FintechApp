@@ -1448,13 +1448,17 @@
   <!-- Plugin used-->
 
 <script>
+  var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
   var user = JSON.parse(localStorage.getItem("userDetails"))
-    var User = user[0].firstName+" "+user[0].lastName 
-    greetings.innerHTML = `Welcome dear ${User} `
+  var loggedInUser = user.find((myDetails) => myDetails.mail == mail)
+  var logedUser = user.indexOf(loggedInUser) +1
+  console.log(logedUser)
+    // var User = user[0].firstName+" "+user[0].lastName 
+    greetings.innerHTML = `Welcome dear ${dLogU.firstName+" "+dLogU.lastName} `
 
   var user = JSON.parse(localStorage.getItem("userDetails"))
-    var User = user[0].acctNo 
-    Acct.innerHTML = `Your Account Number is ${User} `
+    // var User = user[0].acctNo 
+    Acct.innerHTML = `Your Account Number is ${dLogU.acctNo} `
   function logOut(){
     if(confirm("Are You Sure You Want To Logout?")){
       location.href = "login.html"
