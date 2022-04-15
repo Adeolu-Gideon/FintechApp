@@ -49,10 +49,10 @@ var barData = {
         data: [35, 59, 80, 81, 56, 55, 40]
     }, {
         label: "My Second dataset",
-        fillColor: "#ffc107",
-        strokeColor: "#ffc107" ,
-        highlightFill: "rgba(247, 49, 100, 0.6)",
-        highlightStroke: "#ffc107",
+        fillColor: "#dc3545",
+        strokeColor: "#dc3545",
+        highlightFill: "#dc3545",
+        highlightStroke: "#dc3545",
         data: [28, 48, 40, 19, 86, 27, 90]
     }]
 };

@@ -67,10 +67,17 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-form-label">Email Address</label>
-                  <input class="form-control" type="email" required="" placeholder="Test@gmail.com" id="eMail">
+                <div class="row g-2">
+                  <div class="col-6">
+                    <label class="col-form-label">Email Address</label>
+                    <input class="form-control" type="email" required="" placeholder="Test@gmail.com" id="eMail">
+                  </div>
+                  <div class="col-6">
+                    <label class="col-form-label">Phone Number</label>
+                    <input class="form-control" type="tel" required="" placeholder="Phone Number" id="phoneNo" minlength="11" maxlength="11">
+                  </div>
                 </div>
+                
                 <div class="form-group">
                   <label class="col-form-label">Password</label>
                   <div class="form-input position-relative">
@@ -129,6 +136,8 @@
       var mail = eMail.value;
       var acctNo = Math.floor(2+""+Math.random() * 1000000000);
       var pasword = passWord.value;
+      var phoneNumber = phoneNo.value;
+      var defBal = 7000;
       if(localStorage.userDetails != null) {
         details = JSON.parse(localStorage.getItem("userDetails"))
       }
@@ -149,7 +158,7 @@
       //   alert("The email has been taken already")
       // }
 
-      uDetails = ({firstName, lastName, mail, pasword, acctNo})
+      uDetails = ({firstName, lastName, mail, pasword, acctNo, phoneNumber, defBal})
       details.push(uDetails)
       var usd = JSON.stringify(details)
       localStorage.setItem("userDetails", usd)

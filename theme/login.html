@@ -120,7 +120,9 @@
       firstName = details[logedUser].firstName
       lastName = details[logedUser].lastName
       acctNo = details[logedUser].acctNo
-      var user={mail, firstName, lastName, acctNo}
+      phoneNumber = details[logedUser].phoneNumber
+      defBal = details[logedUser].defBal
+      var user={mail, firstName, lastName, acctNo, phoneNumber, defBal}
       alert(logedUser)
       logUserd = localStorage.setItem("loggedUdetails",JSON.stringify(user))
 

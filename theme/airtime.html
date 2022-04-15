@@ -575,10 +575,13 @@
                             <li><a href="user-cards.html">Users Cards</a></li>
                           </ul>
                         </li> -->
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="bills.html"><i class="fa fa-credit-card" data-feather="credit-card">
-                                        </i><span>Bills
-                                            Payment</span></a></li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i class="fa fa-credit-card"
+                                        data-feather="credit-card"> </i><span>Bills Payment</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="cable.html">Cable TV</a></li>
+                                        <li><a href="electricity.html">Electricity</a></li>
+                                    </ul>
+                                </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         href="airtime.html"><i data-feather="trending-up"> </i><span>Airtime
                                             Topup</span></a></li>
@@ -991,30 +994,28 @@
                         <!-- Individual column searching (text inputs) Starts-->
                         <div class="col-xxl-8 box-col-12">
                             <div class="card">
-                                <div class="card-header py-4">
-                                    <h5>MTN, AIRTEL, GLO, 9MOBILE </h5>
-                                </div>
+                                
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-7">
                                             <form class="theme-form mega-form" action="confirm.html" method="post">
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="From Account" disabled>
+                                                    <input class="form-control" type="text" placeholder="From Account" id="Acct" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <select class="form-select" size="1">
-                                                        <option>Select Network</option>
-                                                        <option>MTN</option>
-                                                        <option>AIRTEL</option>
-                                                        <option>GLO</option>
-                                                        <option>9MOBILE</option>
+                                                    <select class="form-select" name="Network" size="1" required>
+                                                        <option value="">Select Network</option>
+                                                        <option value="MTN">MTN</option>
+                                                        <option value="AIRTEL">AIRTEL</option>
+                                                        <option value="GLO">GLO</option>
+                                                        <option value="9MOBILE">9MOBILE</option>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" placeholder="Enter Amount">
+                                                    <input class="form-control" type="tel" placeholder="Enter Amount: Minimum of N100" minlength="3" maxlength="7">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="number" placeholder="Enter Recepient's Phone No.">
+                                                    <input class="form-control" type="tel" placeholder="Enter Recepient's Phone No." minlength="11" maxlength="11">
                                                 </div>
                                                 <div class="card-footer text-center">
                                                     <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit">Continue</button>
@@ -1069,6 +1070,13 @@
     <!-- Plugin used-->
 
     <script>
+        
+        var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
+        var user = JSON.parse(localStorage.getItem("userDetails"))
+        var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
+        var logedUser = user.indexOf(loggedInUser) + 1
+        Acct.value = `From Account: ${dLogU.acctNo}`
+        
         function logOut() {
             if (confirm("Are You Sure You Want To Logout?")) {
                 location.href = "login.html"
