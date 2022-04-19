@@ -992,21 +992,22 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-7">
-                                            <form class="theme-form mega-form" action="confirm.html" method="post">
+                                            <form class="theme-form mega-form">
                                                 <div class="mb-3">
                                                     <input class="form-control" type="text" placeholder="Account number" id="Acct" disabled>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="tel" placeholder="Beneficiary's Account number" id="acctNum" minlength="10" maxlength="10">
+                                                    <input class="form-control" type="tel" placeholder="Beneficiary's Account number"  id="acctNum" minlength="10" maxlength="10">
+                                                    
+                                                  </div>
+                                                <div class="mb-3">
+                                                    <input class="form-control" type="text" placeholder="Beneficiary's Name"  disabled id="bName">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="Beneficiary's Name" disabled>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="number" placeholder="Amount">
+                                                    <input class="form-control" type="number" placeholder="Amount" id="Amnt">
                                                 </div>
                                                 <div class="card-footer text-center">
-                                                  <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit">Continue</button>
+                                                  <a class="btn btn-primary btn-pill btn-air-primary btn-lg" onclick="verifyUser()">Continue</a>
                                                 </div>
                                             </form>
                                         </div>
@@ -1035,11 +1036,56 @@
         </div>
     </div>
     <script>
-      var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
-        var user = JSON.parse(localStorage.getItem("userDetails"))
+      //Checking if user is logged in
+      let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+      var user = JSON.parse(localStorage.getItem("userDetails"))
+        if (userCheck == null) {
+          location.href = "login.html"
+        }
+
+        var loggedInUser = user.find((myDetails) => myDetails.mail == userCheck.mail)
+        var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
+        
+        //var mail = eMail.value;
         var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
-        var logedUser = user.indexOf(loggedInUser) + 1     
+        var logedUser = user.indexOf(loggedInUser)     
         Acct.value = `From Account: ${dLogU.acctNo}`
+        bName.value = `${dLogU.firstName}`
+         
+         
+      function verifyUser() {
+      
+        //Account verification
+        var benAct = parseInt(Amnt.value)
+        vTrans = user.find((vTransaction) => vTransaction.acctNo == Amnt.value) 
+        console.log(vTrans);
+        var verifiCate = user.indexOf(vTrans) +1
+        console.log(verifiCate);
+        userTrans = parseInt(user[verifiCate].defBal)
+        addUp = userTrans + benAct
+        user[verifiCate].defBal=addUp
+        sender = parseInt(user[logedUser].defBal)
+        subTract = sender - benAct
+        user[logedUser].defBal=subTract
+        console.log(subTract, addUp)
+        sd=JSON.stringify(user);
+        localStorage.setItem("userDetails",sd)
+
+        // firstName = user[verifiCate].firstName
+        // lastName = user[verifiCate].lastName
+        // acctNo = user[verifiCate].acctNo
+        // phoneNumber = user[verifiCate].phoneNumber
+        // defBal = user[verifiCate].defBal
+        // var user = { mail, firstName, lastName, acctNo, phoneNumber, defBal }
+        // vTn =  localStorage.setItem("userDetails", JSON.stringify(user))
+        
+        // if (vTrans) {
+        //     alert("hello")
+        //   }
+          
+          
+          //bName.value = `${dLogU.firstName}`
+      }
     </script>
     <!-- latest jquery-->
     <script src="../assets/js/jquery-3.5.1.min.js"></script>

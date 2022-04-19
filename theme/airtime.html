@@ -1070,7 +1070,12 @@
     <!-- Plugin used-->
 
     <script>
-        
+         //Checking if user is logged in
+            let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+            if (userCheck == null) {
+                location.href = "login.html"
+            }
+            
         var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
         var user = JSON.parse(localStorage.getItem("userDetails"))
         var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)

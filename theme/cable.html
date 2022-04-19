@@ -1008,10 +1008,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="Amount To Buy">
+                                                    <input class="form-control" type="text" placeholder="Amount To Buy" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="IUC Number">
+                                                    <input class="form-control" type="text" placeholder="IUC Number" required>
                                                 </div>
                                                 <div class="card-footer text-center">
                                                     <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit">Continue</button>
@@ -1066,6 +1066,14 @@
     <!-- Plugin used-->
 
     <script>
+        //Checking if user is logged in
+        let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+        if (userCheck == null) {
+                location.href = "login.html"
+            } 
+            
+            var loggedInUser = user.find((myDetails) => myDetails.mail == userCheck.mail)
+            
         function logOut() {
             if (confirm("Are You Sure You Want To Logout?")) {
                 location.href = "login.html"

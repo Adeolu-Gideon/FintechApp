@@ -1099,6 +1099,11 @@
         <!-- Plugin used-->
 
         <script>
+             //Checking if user is logged in
+            let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+            if (userCheck == null) {
+                location.href = "login.html"
+            }
             // var Email = mail;
             var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
             var user = JSON.parse(localStorage.getItem("userDetails"))

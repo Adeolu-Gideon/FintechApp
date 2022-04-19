@@ -1096,6 +1096,11 @@
         <!-- Plugin used-->
 
         <script>
+            //Checking if user is logged in
+            let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+            if (userCheck == null) {
+                location.href = "login.html"
+            }
             function logOut() {
                 if (confirm("Are You Sure You Want To Logout?")) {
                     location.href = "login.html"
