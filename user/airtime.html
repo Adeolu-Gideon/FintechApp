@@ -12,7 +12,7 @@
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="../assets/images/logo/logo-icon.png" type="image/x-icon">
     <link rel="shortcut icon" href="../assets/images/logo/logo-icon.png" type="image/x-icon">
-    <title>Novatify Fintech - Data Topup</title>
+    <title>Novatify Fintech - Airtime Topup</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
         rel="stylesheet">
@@ -78,7 +78,7 @@
                     </div>
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
+                    <div class="logo-wrapper"><a href="dashboard.html"><img class="img-fluid"
                                 src="../assets/images/logo/logo.png" alt=""></a></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
                             data-feather="align-center"></i>
@@ -466,7 +466,7 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid for-light"
+                    <div class="logo-wrapper"><a href="dashboard.html"><img class="img-fluid for-light"
                                 src="../assets/images/logo/nova.png" width="145" alt=""><img class="img-fluid for-dark"
                                 src="../assets/images/logo/nova.png" width="145" alt=""></a>
                         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
@@ -474,13 +474,13 @@
                                 data-feather="toggle-left">
                             </i></div>
                     </div>
-                    <div class="logo-icon-wrapper"><a href="index.html"><img class="img-fluid"
+                    <div class="logo-icon-wrapper"><a href="dashboard.html"><img class="img-fluid"
                                 src="../assets/images/logo/logo-icon.png" width="32" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
-                                <li class="back-btn"><a href="index.html"><img class="img-fluid"
+                                <li class="back-btn"><a href="dashboard.html"><img class="img-fluid"
                                             src="../assets/images/logo/logo-icon.png" width="32" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                                             aria-hidden="true"></i></div>
@@ -492,7 +492,7 @@
                           </div>
                         </li> -->
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link" href="../theme/index.html"><i data-feather="home"></i><span
+                                    <a class="sidebar-link" href="dashboard.html"><i data-feather="home"></i><span
                                             class="lan-3">Dashboard</span></a>
                                     <!-- <ul class="sidebar-submenu">
                             <li><a class="lan-4" href="index.html">Default</a></li>
@@ -576,7 +576,7 @@
                           </ul>
                         </li> -->
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i class="fa fa-credit-card"
-                                    data-feather="credit-card"> </i><span>Bills Payment</span></a>
+                                        data-feather="credit-card"> </i><span>Bills Payment</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="cable.html">Cable TV</a></li>
                                         <li><a href="electricity.html">Electricity</a></li>
@@ -588,7 +588,7 @@
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         href="data.html"><i data-feather="wifi"> </i><span>Data Topup</span></a></li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="index.html-basic.html"><i data-feather="dollar-sign">
+                                        href="#"><i data-feather="dollar-sign">
                                         </i><span>Loan</span></a>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
@@ -600,7 +600,7 @@
                                 <!-- <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="index.html-do.html"><i
                               data-feather="message-square"> </i><span>Chat With Novatify</span></a></li> -->
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="index.html"><i data-feather="help-circle"> </i><span>Help Desk</span></a>
+                                        href="#"><i data-feather="help-circle"> </i><span>Help Desk</span></a>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         onclick="logOut()"><i data-feather="log-out">
@@ -975,7 +975,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Data Topup</h3>
+                                <h3>Airtime Topup</h3>
                             </div>
                             <div class="col-6">
                                 <ol class="breadcrumb">
@@ -1012,10 +1012,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="tel" placeholder="Enter Amount: N300 Per GB" minlength="3" required>
+                                                    <input class="form-control" type="tel" placeholder="Enter Amount: Minimum of N100" minlength="3" maxlength="7">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <input class="form-control" type="tel" placeholder="Enter Recepient's Phone No." minlength="11" maxlength="11" required>
+                                                    <input class="form-control" type="tel" placeholder="Enter Recepient's Phone No." minlength="11" maxlength="11">
                                                 </div>
                                                 <div class="card-footer text-center">
                                                     <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit">Continue</button>
@@ -1023,7 +1023,7 @@
                                             </form>
                                         </div>
                                         <div class="col-md-5 text-center"><img class="img-fluid"
-                                                src="../assets/images/ecommerce/data.png" alt=""></div>
+                                                src="../assets/images/ecommerce/airtime.png" alt=""></div>
                                     </div>
                                 </div>
                             </div>
@@ -1071,17 +1071,17 @@
 
     <script>
          //Checking if user is logged in
-        let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
-        if (userCheck == null) {
-            location.href = "login.html"
-        }
-
+            let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+            if (userCheck == null) {
+                location.href = "login.html"
+            }
+            
         var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
         var user = JSON.parse(localStorage.getItem("userDetails"))
         var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
         var logedUser = user.indexOf(loggedInUser) + 1
         Acct.value = `From Account: ${dLogU.acctNo}`
-
+        
         function logOut() {
             if (confirm("Are You Sure You Want To Logout?")) {
                 location.href = "login.html"

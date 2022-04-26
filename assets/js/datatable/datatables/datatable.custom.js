@@ -441,7 +441,7 @@ $(document).ready(function() {
     $('#ajax-data-object').DataTable({
         "ajax": "../assets/ajax/object.txt",
         "columns": [{
-            "data": "name"
+            "data": "firstName"
         }, {
             "data": "position"
         }, {
