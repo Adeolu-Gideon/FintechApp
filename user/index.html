@@ -80,7 +80,7 @@
      
 
     </div>
-    <div class="container"><p><button class="btn btn-info btn-pill btn-air-info btn-sm bottom-fixed" style="float: right;"><i data-feather="send"></i></button></p>
+    <div class="container"><p><button class="btn btn-info btn-pill btn-air-info btn-sm bottom-fixed float-left"><i data-feather="send"></i></button></p>
     <p class="result"></p></div>
     <!-- latest jquery-->
     <script src="../assets/js/jquery-3.5.1.min.js"></script>
@@ -99,6 +99,8 @@
     <script src="../assets/js/landing_sticky.js"></script>
     <script src="../assets/js/landing.js"></script>
     <!-- Plugins JS Ends-->
+    <!-- Tawk.to Support -->
+    <script src="../assets/js/support.js"></script>
     <!-- Theme js-->
     <script src="../assets/js/script.js"></script>
     <!-- login js-->
@@ -117,7 +119,7 @@
         btn.addEventListener('click', async () => {
           try {
             await navigator.share(shareData)
-            resultPara.textContent = 'NFT shared successfully'
+            resultPara.textContent = 'Novatify shared successfully'
           } catch (err) {
             resultPara.textContent = 'Error: ' + err
           }
