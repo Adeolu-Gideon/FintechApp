@@ -68,13 +68,31 @@
                   </div>
                 </div>
                 <div class="row g-2">
-                  <div class="col-6">
+                  <div class="col-4">
                     <label class="col-form-label">Email Address</label>
                     <input class="form-control" type="email" required="" placeholder="Test@gmail.com" id="eMail">
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
                     <label class="col-form-label">Phone Number</label>
                     <input class="form-control" type="tel" required="" placeholder="Phone Number" id="phoneNo" minlength="11" maxlength="11">
+                  </div>
+                  <div class="col-4">
+                    <label class="col-form-label">BVN</label>
+                    <input class="form-control" type="text" required="" placeholder="Enter Your BVN" id="uBvn">
+                  </div>
+                </div>
+                <div class="row g-2">
+                  <div class="col-4">
+                    <label class="col-form-label">Date of Birth</label>
+                    <input class="form-control" type="date" required="" placeholder="Enter Your Address" id="dOb">
+                  </div>
+                  <div class="col-4">
+                    <label class="col-form-label">Address</label>
+                    <input class="form-control" type="text" required="" placeholder="Enter Your State" id="uAddress" minlength="3" maxlength="15">
+                  </div>
+                  <div class="col-4">
+                    <label class="col-form-label">State</label>
+                    <input class="form-control" type="text" required="" placeholder="Enter Your State" id="uState" minlength="3" maxlength="15">
                   </div>
                 </div>
                 
@@ -143,7 +161,10 @@
       var pasword = passWord.value;
       var phoneNumber = phoneNo.value;
       var defBal = 7000;
-      var userAddress = "";
+      var userBvn = uBvn.value;
+      var dOfbirth = dOb.value
+      var userAddress = uAddress.value;
+      var userState = uState.value;
       if(localStorage.userDetails != null) {
         details = JSON.parse(localStorage.getItem("userDetails"))
       }
@@ -164,7 +185,7 @@
       //   alert("The email has been taken already")
       // }
 
-      uDetails = ({firstName, lastName, mail, pasword, acctNo, phoneNumber, defBal})
+      uDetails = ({firstName, lastName, mail, pasword, acctNo, phoneNumber, defBal, userBvn, dOfbirth, userAddress, userState})
       details.push(uDetails)
       var usd = JSON.stringify(details)
       localStorage.setItem("userDetails", usd)

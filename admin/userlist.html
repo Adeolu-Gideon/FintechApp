@@ -385,11 +385,11 @@
                 function deleteUser() {
                     userList = localStorage.getItem("userDetails")
                     users = JSON.parse(userList)
-                    confirm("Are You Sure You  Want To Delete This Customer?")
+                    if (confirm("Are You Sure You  Want To Delete This Customer?"))
                     users.splice(j,1); 
-                    
                     localStorage.setItem("userDetails", JSON.stringify(users))
-                    location.reload()
+                    location.reload()                   
+                    
                 }
                 
 

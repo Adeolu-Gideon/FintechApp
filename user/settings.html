@@ -575,8 +575,9 @@
                             <li><a href="user-cards.html">Users Cards</a></li>
                           </ul>
                         </li> -->
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i class="fa fa-credit-card"
-                                    data-feather="credit-card"> </i><span>Bills Payment</span></a>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                                            class="fa fa-credit-card" data-feather="credit-card"> </i><span>Bills
+                                            Payment</span></a>
                                     <ul class="sidebar-submenu">
                                         <li><a href="cable.html">Cable TV</a></li>
                                         <li><a href="electricity.html">Electricity</a></li>
@@ -600,7 +601,8 @@
                                 <!-- <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="index.html-do.html"><i
                               data-feather="message-square"> </i><span>Chat With Novatify</span></a></li> -->
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="dashboard.html"><i data-feather="help-circle"> </i><span>Help Desk</span></a>
+                                        href="dashboard.html"><i data-feather="help-circle"> </i><span>Help
+                                            Desk</span></a>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         onclick="logOut()"><i data-feather="log-out">
@@ -986,78 +988,76 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <form class="card">
-                            
+
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Account Number</label>
-                                                <input class="form-control" type="text" placeholder="Account Number" id="Acct" disabled>
+                                                <input class="form-control" type="text" placeholder="Account Number"
+                                                    id="Acct" disabled>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">First Name</label>
-                                                <input class="form-control" type="text" placeholder="First Name" id="Fname" disabled>
+                                                <input class="form-control" type="text" placeholder="First Name"
+                                                    id="Fname">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Last Name</label>
-                                                <input class="form-control" type="text" placeholder="Last Name" id="Lname" disabled>
+                                                <input class="form-control" type="text" placeholder="Last Name"
+                                                    id="Lname">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Email address</label>
-                                                <input class="form-control" type="email" placeholder="Email" id="Email" disabled>
+                                                <input class="form-control" type="email" placeholder="Email" id="Email"
+                                                    disabled>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Phone Number</label>
-                                                <input class="form-control" type="tel" placeholder="Phone Number" minlength="11" maxlength="11" id="phoneNo" disabled>
+                                                <input class="form-control" type="tel" placeholder="Phone Number"
+                                                    minlength="11" maxlength="11" id="phoneNo" disabled>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Address</label>
-                                                <input class="form-control" type="text" placeholder="Home Address" id="uAddress">
+                                                <input class="form-control" type="text" placeholder="Home Address"
+                                                    id="uAddress">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
-                                                <label class="form-label">City</label>
-                                                <input class="form-control" type="text" placeholder="City">
+                                                <label class="form-label">State</label>
+                                                <input class="form-control" type="text" placeholder="State" id="uState">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
                                             <div class="mb-3">
-                                                <label class="form-label">Postal Code</label>
-                                                <input class="form-control" type="number" placeholder="ZIP Code">
+                                                <label class="form-label">Date of Birth</label>
+                                                <input class="form-control" type="date" placeholder="Date of Birth" id="dOb" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="mb-3">
-                                                <label class="form-label">State</label>
-                                                <select class="form-control btn-square">
-                                                    <option value="0">--Select--</option>
-                                                    <option value="1">Oyo</option>
-                                                    <option value="2">Lagos</option>
-                                                    <option value="3">Osun</option>
-                                                    <option value="4">Ogun</option>
-                                                    <option value="4">Ekiti</option>
-                                                    <option value="4">Kwara</option>
-                                                    <option value="4">Ondo</option>
-                                                </select>
+                                                <label class="form-label">BVN</label>
+                                                <input class="form-control" type="number" placeholder="BVN" id="uBvn" minlength="11" maxlength="11"  disabled>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit" onclick="updateProfile(i)">Update Profile</button>
+                                    <a type="button" class="btn btn-primary btn-pill btn-air-primary btn-lg"
+                                        onclick="updateProfile()">Update Profile</a>
                                 </div>
                             </form>
                         </div>
@@ -1099,64 +1099,44 @@
         <!-- Plugin used-->
 
         <script>
-             //Checking if user is logged in
+            //Checking if user is logged in
             let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
             if (userCheck == null) {
                 location.href = "login.html"
             }
             // var Email = mail;
-            var j;
+            
             var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
-            var user = JSON.parse(localStorage.getItem("userDetails"))
-            var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
-            var logedUser = user.indexOf(loggedInUser) + 1
+            var users = JSON.parse(localStorage.getItem("userDetails"))
+            var loggedInUser = users.find((myDetails) => myDetails.mail == dLogU.mail)
+            var logedUser = users.indexOf(loggedInUser) 
+            console.log(logedUser);
             // let users = user.find((val) => val.email == )
-                // var User = user[0].firstName
-                
-                function updateProfile(i) {
-                    j = i
-                    var userAddress = document.getElementById("uAddress").value;
-                    document.getElementById("Fname").value = users[i].firstName
-                    document.getElementById("Lname").value = users[i].lastName
-                    document.getElementById("Email").value = users[i].mail
-                    document.getElementById("phoneNo").value = users[i].phoneNumber
-                    document.getElementById("Acct").value = users[i].acctNo
-                    document.getElementById("uAddress").value = users[i].userAddress
-                    newProfile();
-                    }
-                    function newProfile() {
-                    d = document.getElementById('Fname').value;
-                    users[j].firstName = d;
-                    d = document.getElementById('Lname').value;
-                    users[j].lastName = d;
-                    d = document.getElementById('Email').value;
-                    users[j].mail = d;
-                    d = document.getElementById('phoneNo').value;
-                    users[j].phoneNumber = d;
-                    d = document.getElementById('Acct').value;
-                    users[j].acctNo = d;
-                    d = document.getElementById('uAddress').value;
-                    users[j].userAddress = d;
-                    localStorage.setItem("userDetails", JSON.stringify(users))
-                    location.reload()
-                }
-                Fname.value = `${dLogU.firstName}`
-                Lname.value = `${dLogU.lastName}`
-                Email.value = `${dLogU.mail}`
-                Acct.value = `${dLogU.acctNo}`
-                phoneNo.value = `${dLogU.phoneNumber}`
+            // var User = user[0].firstName
+             document.getElementById("Fname").value = users[logedUser].firstName
+                document.getElementById("Lname").value = users[logedUser].lastName
+                document.getElementById("Email").value = users[logedUser].mail
+                document.getElementById("phoneNo").value = users[logedUser].phoneNumber
+                document.getElementById("Acct").value = users[logedUser].acctNo
+                document.getElementById("uAddress").value = users[logedUser].userAddress
+                document.getElementById("uBvn").value = users[logedUser].userBvn
+                document.getElementById("dOb").value = users[logedUser].dOfbirth
+                document.getElementById("uState").value = users[logedUser].userState
 
-                // var user = JSON.parse(localStorage.getItem("userDetails"))
-                    //   Lname.value = user[logedUser].lastName
-                //     Lname.value = `${User}`
-
-                // var user = JSON.parse(localStorage.getItem("userDetails"))
-                //     var User = user[0].mail
-                //     Email.value = `${User}`
-                // var user = JSON.parse(localStorage.getItem("userDetails"))
-                //     var User = user[0].acctNo
-                //     Acct.value = `${User}`
-                // alert(User)
+            function updateProfile() {
+                users[logedUser].firstName = document.getElementById('Fname').value;
+                users[logedUser].lastName = document.getElementById('Lname').value;
+                users[logedUser].mail = document.getElementById('Email').value;
+                users[logedUser].phoneNumber = document.getElementById('phoneNo').value;
+                users[logedUser].acctNo = document.getElementById('Acct').value;
+                users[logedUser].userAddress = document.getElementById('uAddress').value;
+                users[logedUser].userBvn = document.getElementById("uBvn").value;
+                users[logedUser].dOfbirth = document.getElementById("dOb").value;
+                users[logedUser].userState = document.getElementById("uState").value;
+                localStorage.setItem("userDetails", JSON.stringify(users))
+                 location.reload()
+            }
+            
             function logOut() {
                 if (confirm("Are You Sure You Want To Logout?")) {
                     location.href = "login.html"
