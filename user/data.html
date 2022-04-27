@@ -998,7 +998,7 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-7">
-                                            <form class="theme-form mega-form" action="confirm.html" method="post">
+                                            <form class="theme-form mega-form">
                                                 <div class="mb-3">
                                                     <input class="form-control" type="text" placeholder="From Account" id="Acct" disabled>
                                                 </div>
@@ -1018,7 +1018,7 @@
                                                     <input class="form-control" type="tel" placeholder="Enter Recepient's Phone No." minlength="11" maxlength="11" required>
                                                 </div>
                                                 <div class="card-footer text-center">
-                                                    <button class="btn btn-primary btn-pill btn-air-primary btn-lg" type="submit">Continue</button>
+                                                    <button class="btn btn-primary btn-pill btn-air-primary btn-lg" onclick="buyData()">Continue</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -1070,6 +1070,24 @@
     <!-- Plugin used-->
     <!-- Tawk.to Support -->
     <script src="../assets/js/support.js"></script>
+    <script>
+        function buyData() {
+        fetch("https://api.mtn.com/v1/datagifting/customers/senderMsisdn/dataGifting", {
+                "method": "POST",
+                "headers": {
+                    "Content-Type": "application/json",
+                    "X-API-Key": "KJRfuXGY1tIvsV0GIHudnbl9gROMmVOO"
+                },
+                "body": "{\"receiverMsisdn\":\"2349062058463\",\"productCode\":\"NACT_NG_Data_4504\",\"sendSms\":true}"
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+            }
+    </script>
     <script>
          //Checking if user is logged in
         let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
