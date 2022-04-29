@@ -8,59 +8,51 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>Home</title>
-
-    <!-- Fontfaces CSS-->
-    <link href="css/font-face.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" type="text/css" href="wowjs/css/libs/animate.css">
-
-
-
-
-    <!-- Main CSS-->
-    <link href="css/theme.css" rel="stylesheet" media="all">
-    <script type="text/javascript" src="wowjs/wow.min.js"></script>
-
-
-    <script>
-        new WOW().init();
-    </script>
+      <title>Novatify Fintech</title>
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap"
+        rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.css">
+      <!-- ico-font-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/vendors/icofont.css">
+      <!-- Themify icon-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/vendors/themify.css">
+      <!-- Flag icon-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/vendors/flag-icon.css">
+      <!-- Feather icon-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/vendors/feather-icon.css">
+      <!-- Plugins css start-->
+      <!-- Plugins css Ends-->
+      <!-- Bootstrap css-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/vendors/bootstrap.css">
+      <!-- App css-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/custom.css">
+      <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+      <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+      <!-- Responsive css-->
+      <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
 
 </head>
   <body>
   <div class="container my-5 w-25 ">
     <div class="card p-5 border-5">
-      <form id="paymentForm">
+      <form  class="theme-form" id="paymentForm">
       <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email-address" required / class="form-control" placeholder="Email Address">
+        <label for="email" class="col-form-label">Email Address</label>
+        <input class="form-control" type="email" id="email-address" required / class="form-control" placeholder="Email Address">
       </div>
       <div class="form-group">
-        <label for="amount">Amount</label>
-        <input type="tel" id="amount" required / class="form-control">
+        <label for="amount" class="col-form-label">Amount</label>
+        <input class="form-control" type="tel" id="amount" required / class="form-control">
       </div>
       <div class="form-group">
-        <label for="first-name">First Name</label>
-        <input type="text" id="first-name" / class="form-control">
+        <label for="first-name" class="col-form-label">First Name</label>
+        <input class="form-control" type="text" id="first-name" / class="form-control">
       </div>
       <div class="form-group">
-        <label for="last-name">Last Name</label>
-        <input type="text" id="last-name" / class="form-control">
+        <label for="last-name" class="col-form-label">Last Name</label>
+        <input class="form-control" type="text" id="last-name" / class="form-control">
       </div>
       <div class="form-submit">
         <button type="submit" onclick="payWithPaystack()" class="btn btn-primary"> Pay </button>

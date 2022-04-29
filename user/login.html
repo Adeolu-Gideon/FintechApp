@@ -142,18 +142,20 @@
       var pasword = passWord.value;
       // var details = [];
       // console.log(details[0].pasword);
-      // console.log(details);
-      for(u=0; u<=details.length; u++) {
-        if((mail==details[u].mail) && (pasword==details[u].pasword)) {
-          // console.log(pasword)
-          // console.log(details[u].pasword);
-          location.href = "dashboard.html"
-          // console.log("wrong");
-        }
-        else if((mail != details[u].mail) && (pasword != details[u].pasword)) {
-          alert("You have entered invalid details"
-          );
-          // console.log("right")
+      // console.log(details); 
+      for(u=0; u < details.length; u++) {
+        if((details[u].mail==mail) && (details[u].pasword==pasword)) {
+         alert('login is successful')
+         // console.log(details[u].pasword);
+         location.href = "dashboard.html"
+         // console.log("wrong");
+         break;
+       }
+       
+       else if ((details[u].mail != mail) && ( details[u].pasword!= pasword)) {
+          alert("You have entered invalid details");
+          // console.log("right");
+        
         }
       }
     }

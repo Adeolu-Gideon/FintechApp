@@ -434,16 +434,13 @@
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="media profile-media"><img class="b-r-10"
                                     src="../assets/images/dashboard/profile.jpg" alt="">
-                                <div class="media-body"><span>Emay Walter</span>
-                                    <p class="mb-0 font-roboto">Admin <i class="middle fa fa-angle-down"></i></p>
+                                <div class="media-body"><span id="userProfile"></span>
+                                    <i class="middle fa fa-angle-down"></i>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
-                                <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                                <li><a href="#"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                                <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
-                                <li><a href="#"><i data-feather="log-in"> </i><span>Log in</span></a></li>
+                                <li><a href="settings.html"><i data-feather="settings"></i><span>Settings</span></a></li>
+                                <li><a href="#" onclick="logOut()"><i data-feather="log-out"> </i><span>Log out</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -592,12 +589,7 @@
                                         href="settings.html"><i data-feather="settings">
                                         </i><span>Settings</span></a></li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="faqs.html"><i data-feather="info"> </i><span>FAQS</span></a></li>
-                                <!-- <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="index.html-do.html"><i
-                              data-feather="message-square"> </i><span>Chat With Novatify</span></a></li> -->
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="#"><i data-feather="help-circle"> </i><span>Help Desk</span></a>
-                                </li>
+                                        href="faqs.html"><i data-feather="help-circle"> </i><span>FAQS</span></a></li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         onclick="logOut()"><i data-feather="log-out">
                                         </i><span>Log Out</span></a></li>
@@ -1075,9 +1067,12 @@
     <!-- Plugin used-->
 
     <script>
+        dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
+        userProfile.innerHTML = `${dLogU.firstName}`
         function logOut() {
             if (confirm("Are You Sure You Want To Logout?")) {
-                location.href = "login.html"
+                window.close("confirm.html");
+                window.open("login.html");
             }
 
         }
