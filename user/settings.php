@@ -1,3 +1,30 @@
+<?php
+//include auth_session.php file on all user pages
+include("../includes/auth_session.php");
+require("../includes/db.php");
+?>
+<?php
+	// Fetch USERS DATA FROM DATABASE 
+	
+	$query = " SELECT * FROM `users` WHERE username = '{$_SESSION['username']}' ";
+	$run_query = mysqli_query($conn, $query);
+	if(mysqli_num_rows($run_query) == 1){
+		while($result = mysqli_fetch_assoc($run_query)){
+			$username = $result['username'];
+			$fName = $result['fName'];
+			$lName = $result['lName'];
+			$phoneNo = $result['phoneNo'];
+			$acctNo = $result['acctNo'];
+			$uBvn = $result['uBvn'];
+			$dOb = $result['dOb'];
+			$uAddress = $result['uAddress'];
+			$uState = $result['uState'];
+			$eMail = $result['eMail'];
+			
+		}
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -434,13 +461,13 @@
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="media profile-media"><img class="b-r-10"
                                     src="../assets/images/dashboard/profile.jpg" alt="">
-                                <div class="media-body"><span id="userProfile"></span>
+                                <div class="media-body"><span><?php echo $_SESSION['username']; ?></span>
                                     <i class="middle fa fa-angle-down"></i>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="settings.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                                <li><a href="#" onclick="logOut()"><i data-feather="log-out"> </i><span>Log out</span></a></li>
+                                <li><a href="settings.php"><i data-feather="settings"></i><span>Settings</span></a></li>
+                                <li><a href="logout.php"><i data-feather="log-out"> </i><span>Log out</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -463,7 +490,7 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="dashboard.html"><img class="img-fluid for-light"
+                    <div class="logo-wrapper"><a href="dashboard.php"><img class="img-fluid for-light"
                                 src="../assets/images/logo/nova.png" width="145" alt=""><img class="img-fluid for-dark"
                                 src="../assets/images/logo/nova.png" width="145" alt=""></a>
                         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
@@ -471,13 +498,13 @@
                                 data-feather="toggle-left">
                             </i></div>
                     </div>
-                    <div class="logo-icon-wrapper"><a href="dashboard.html"><img class="img-fluid"
+                    <div class="logo-icon-wrapper"><a href="dashboard.php"><img class="img-fluid"
                                 src="../assets/images/logo/logo-icon.png" width="32" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
-                                <li class="back-btn"><a href="dashboard.html"><img class="img-fluid"
+                                <li class="back-btn"><a href="dashboard.php"><img class="img-fluid"
                                             src="../assets/images/logo/logo-icon.png" width="32" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                                             aria-hidden="true"></i></div>
@@ -489,7 +516,7 @@
                           </div>
                         </li> -->
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link" href="dashboard.html"><i data-feather="home"></i><span
+                                    <a class="sidebar-link" href="dashboard.php"><i data-feather="home"></i><span
                                             class="lan-3">Dashboard</span></a>
                                     <!-- <ul class="sidebar-submenu">
                             <li><a class="lan-4" href="index.html">Default</a></li>
@@ -530,7 +557,7 @@
                           </ul>
                         </li> -->
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="transfer.html"><i data-feather="send"> </i><span>Transfer</span></a></li>
+                                        href="transfer.php"><i data-feather="send"> </i><span>Transfer</span></a></li>
                                 <!-- <li class="sidebar-list">
                           <label class="badge badge-info">Latest </label><a class="sidebar-link sidebar-title link-nav"
                             href="kanban.html"><i data-feather="monitor"> </i><span>kanban Board</span></a>
@@ -590,13 +617,13 @@
                                         </i><span>Loan</span></a>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="settings.html"><i data-feather="settings">
+                                        href="settings.php"><i data-feather="settings">
                                         </i><span>Settings</span></a></li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
                                         href="faqs.html"><i data-feather="help-circle"> </i><span>FAQS</span></a>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        onclick="logOut()"><i data-feather="log-out">
+                                        href="logout.php"><i data-feather="log-out">
                                         </i><span>Log Out</span></a></li>
                                 <!-- <li class="sidebar-main-title">
                           <div>
@@ -978,77 +1005,84 @@
                 <div class="container-fluid credit-card">
                     <div class="row">
                         <div class="col-xl-12">
-                            <form class="card">
+                            <form class="card" action="profile-update.php" method="POST">
 
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Account Number</label>
                                                 <input class="form-control" type="text" placeholder="Account Number"
-                                                    id="Acct" disabled>
+                                                    id="Acct" disabled value="<?php if(isset($acctNo)) {echo $acctNo;}?>">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Username</label>
+                                                <input class="form-control" type="text" placeholder="Username"
+                                                    id="username" disabled value="<?php if(isset($username)) {echo $username;}?>">
                                             </div>
                                         </div>
 
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">First Name</label>
-                                                <input class="form-control" type="text" placeholder="First Name"
-                                                    id="Fname">
+                                                <input class="form-control" type="text" placeholder="First Name" name="fName"
+                                                    id="Fname" value="<?php if(isset($fName)) {echo $fName;}?>">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Last Name</label>
                                                 <input class="form-control" type="text" placeholder="Last Name"
-                                                    id="Lname">
+                                                    id="Lname" name="lName" value="<?php if(isset($lName)) {echo $lName;}?>">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-3">
                                                 <label class="form-label">Email address</label>
                                                 <input class="form-control" type="email" placeholder="Email" id="Email"
-                                                    disabled>
+                                                    disabled value="<?php if(isset($eMail)) {echo $eMail;}?>">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Phone Number</label>
                                                 <input class="form-control" type="tel" placeholder="Phone Number"
-                                                    minlength="11" maxlength="11" id="phoneNo" disabled>
+                                                    minlength="11" maxlength="11" id="phoneNo" disabled value="<?php if(isset($phoneNo)) {echo $phoneNo;}?>">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-6">
                                             <div class="mb-3">
                                                 <label class="form-label">Address</label>
                                                 <input class="form-control" type="text" placeholder="Home Address"
-                                                    id="uAddress">
+                                                    name="uAddress" id="uAddress" value="<?php if(isset($uAddress)) {echo $uAddress;}?>">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-4">
                                             <div class="mb-3">
                                                 <label class="form-label">State</label>
-                                                <input class="form-control" type="text" placeholder="State" id="uState">
+                                                <input class="form-control" type="text" placeholder="State" name="uState" id="uState" value="<?php if(isset($uState)) {echo $uState;}?>">
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-md-3">
                                             <div class="mb-3">
                                                 <label class="form-label">Date of Birth</label>
-                                                <input class="form-control" type="date" placeholder="Date of Birth" id="dOb" disabled>
+                                                <input class="form-control" type="date" placeholder="Date of Birth" id="dOb" disabled value="<?php if(isset($dOb)) {echo $dOb;}?>">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="mb-3">
                                                 <label class="form-label">BVN</label>
-                                                <input class="form-control" type="number" placeholder="BVN" id="uBvn" minlength="11" maxlength="11"  disabled>
+                                                <input class="form-control" type="number" placeholder="BVN" id="uBvn" minlength="11" maxlength="11"  disabled value="<?php if(isset($uBvn)) {echo $uBvn;}?>">
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <a type="button" class="btn btn-primary btn-pill btn-air-primary btn-lg"
-                                        onclick="updateProfile()">Update Profile</a>
+                                    <button type="submit" class="btn btn-primary btn-pill btn-air-primary btn-lg"
+                                        name="updateProfile">Update Profile</button>
                                 </div>
                             </form>
                         </div>
@@ -1093,10 +1127,10 @@
 
         <script> 
             //Checking if user is logged in
-            let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
-            if (userCheck == null) {
-                location.href = "login.html"
-            }
+            // let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
+            // if (userCheck == null) {
+            //     location.href = "login.html"
+            // }
             // var Email = mail;
             
             var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))

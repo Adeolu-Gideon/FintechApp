@@ -1,3 +1,25 @@
+<?php
+//include auth_session.php file on all user panel pages
+include("../includes/auth_session.php");
+require("../includes/db.php");
+?>
+<?php
+	// Fetch USERS DATA FROM DATABASE 
+	
+	$query = " SELECT * FROM `users` WHERE username = '{$_SESSION['username']}' ";
+	$run_query = mysqli_query($conn, $query);
+	if(mysqli_num_rows($run_query) == 1){
+		while($result = mysqli_fetch_assoc($run_query)){
+			$username = $result['username'];
+			$fName = $result['fName'];
+			$lName = $result['lName'];
+			$acctNo = $result['acctNo'];
+			$defBal = $result['defBal'];
+			
+		}
+	}
+?>		
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -395,13 +417,13 @@
                   data-feather="maximize"></i></a></li>
             <li class="profile-nav onhover-dropdown p-0 me-0">
               <div class="media profile-media"><img class="b-r-10" src="../assets/images/dashboard/profile.jpg" alt="">
-                <div class="media-body"><span id="userProfile"></span>
+                <div class="media-body"><span><?php echo $_SESSION['username']; ?></span>
                   <i class="middle fa fa-angle-down"></i>
                 </div>
               </div>
               <ul class="profile-dropdown onhover-show-div">
-                <li><a href="settings.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                <li><a href="#" onclick="logOut()"><i data-feather="log-out"> </i><span>Log out</span></a></li>
+                <li><a href="settings.php"><i data-feather="settings"></i><span>Settings</span></a></li>
+                <li><a href="logout.php"><i data-feather="log-out"> </i><span>Log out</span></a></li>
               </ul>
             </li>
           </ul>
@@ -484,7 +506,7 @@
                     <li><a href="projectcreate.html">Create new</a></li>
                   </ul>
                 </li> -->
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="transfer.html"><i
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="transfer.php"><i
                       data-feather="send"> </i><span>Transfer</span></a></li>
                 <!-- <li class="sidebar-list">
                   <label class="badge badge-info">Latest </label><a class="sidebar-link sidebar-title link-nav"
@@ -540,11 +562,11 @@
                       data-feather="wifi"> </i><span>Data Topup</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="#"><i
                       data-feather="dollar-sign"> </i><span>Loan</span></a></li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="settings.html"><i data-feather="settings">
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="settings.php"><i data-feather="settings">
                     </i><span>Settings</span></a></li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="faqs.html"><i
                       data-feather="help-circle"> </i><span>FAQS</span></a></li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" onclick="logOut()"><i data-feather="log-out">
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="logout.php"><i data-feather="log-out">
                     </i><span>Log Out</span></a></li>
                 <!-- <li class="sidebar-main-title">
                   <div>
@@ -916,7 +938,7 @@
           <div class="page-title">
             <div class="row">
               <div class="col-6">
-                <h3 id="greetings">welcome Dear, User</h3>
+                <h3>welcome Dear, <?php if(isset($fName)) {echo $fName. " " .$lName;}?></h3>
               </div>
               <div class="col-6">
                 <ol class="breadcrumb">
@@ -961,7 +983,7 @@
                     <div class="media static-top-widget">
                       <div class="align-self-center text-center"><i data-feather="user"></i></div>
                       <div class="media-body"><span class="m-0">Account No</span>
-                        <h4 class="mb-0" id="Acct"></h4><i class="icon-bg" data-feather="user"></i>
+                        <h4 class="mb-0"><?php if(isset($acctNo)) {echo $acctNo;}?></h4><i class="icon-bg" data-feather="user"></i>
                       </div>
                     </div>
                   </div>
@@ -974,7 +996,7 @@
                       <div class="align-self-center text-center"><i data-feather="shopping-bag"></i></div>
                       <div class="media-body"><span class="m-0">Balance</span>
                         <h4 class="mb-0 counter" id="hidebal">******</h4><i class="icon-bg" data-feather="shopping-bag"></i>
-                        <h4 class="mb-0 counter" id="bal"></h4><i class="icon-bg" data-feather="shopping-bag"></i>
+                        <h4 class="mb-0 counter" id="bal"><?php if(isset($defBal)) {echo $defBal;}?></h4><i class="icon-bg" data-feather="shopping-bag"></i>
                         <div class="show-hide" id="hide"><span class="show" id="Show"> </span></div>
                       </div>
                     </div>
@@ -1407,20 +1429,15 @@
   
   <script>
     //Checking if user is logged in
-    let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
-    if (userCheck == null) {
-      location.href = "login.html"
-    }
-    else {
-
+    
       var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
       var user = JSON.parse(localStorage.getItem("userDetails"))
       var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
       var logedUser = user.indexOf(loggedInUser) 
       console.log(logedUser)
       // var User = user[0].firstName+" "+user[0].lastName 
-      greetings.innerHTML = `Welcome dear ${dLogU.firstName + " " + dLogU.lastName}`
-      userProfile.innerHTML = `${dLogU.firstName}`
+      
+      
 
       var user = JSON.parse(localStorage.getItem("userDetails"))
       // var User = user[0].acctNo 

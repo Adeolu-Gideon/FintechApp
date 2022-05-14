@@ -66,7 +66,7 @@
                   <h1 class="wow pulse">Fintech Solution</h1>
                   <h2 class="txt-secondary wow fadeIn">Safe, Reliable & User Friendly</h2>
                   <p class="mt-3 wow fadeIn">Get all your financial transactions done in your comfort zone with our all in one Fintech Solution. Send Money, Get Loan, Mobile Topup, Cable TV Subscription, Electricity Payment & More.. </p>
-                  <div class="btn-grp mt-4"><a class="btn btn-pill btn-primary btn-air-primary btn-lg me-3 wow pulse" href="login.html" target="_blank">Sign In</a><a class="btn btn-pill btn-secondary btn-air-secondary btn-lg me-3 wow pulse" href="sign-up.html" target="_blank">Sign Up</a></div>
+                  <div class="btn-grp mt-4"><a class="btn btn-pill btn-primary btn-air-primary btn-lg me-3 wow pulse" href="login.php" target="_blank">Sign In</a><a class="btn btn-pill btn-secondary btn-air-secondary btn-lg me-3 wow pulse" href="sign-up.php" target="_blank">Sign Up</a></div>
                 </div>
               </div>
             </div>

@@ -1,3 +1,75 @@
+<?php
+//include auth_session.php file on all user pages
+include("../includes/auth_session.php");
+require("../includes/db.php");
+?>
+<?php
+	// Fetch USERS DATA FROM DATABASE 
+	
+	$query = " SELECT * FROM `users` WHERE username = '{$_SESSION['username']}' ";
+	$run_query = mysqli_query($conn, $query);
+	if(mysqli_num_rows($run_query) == 1){
+		while($result = mysqli_fetch_assoc($run_query)){
+		
+			$acctNo = $result['acctNo'];
+            
+			
+			
+		}
+	}
+?>
+<?php
+
+if(isset($_POST['add_beneficiary'])){
+
+    $beneficiary_name = $_POST['beneficiary_name'];
+    $beneficiary_acno = $_POST['beneficiary_acno'];
+    $username =  $_SESSION['username'];
+
+    $sql = "SELECT acctNo FROM users WHERE acctNo = $beneficiary_acno";
+    $result = $conn->query($sql);
+    if($result->num_rows <= 0 ){
+
+        echo '<script>alert("Beneficiary not found. \nKindly enter a valid Account number")
+        location="addbeneficiary.php"</script>';
+    }
+
+
+        else{
+
+            if($beneficiary_acno == $acctNo){
+
+                echo '<script>alert("You cannot add yourself as a beneficiary")</script>';
+            }
+            
+            else{             
+                date_default_timezone_set('Asia/Kolkata'); 
+                $_date_added = date("d/m/y h:i:s A");
+            
+                    $sql = "INSERT INTO beneficiary_$acctNo (Beneficiary_name,
+                    Beneficiary_ac_no,Date_added) 
+                    VALUE ('$beneficiary_name','$beneficiary_acno','$_date_added')";
+                    if($conn->query($sql) == TRUE){
+            
+                        echo '<script>alert("Beneficiary Added Successfully")
+                        location="viewbeneficiary.php"</script>';
+                    }
+            
+                    else{
+            
+                        echo "Error inserting data: " . $conn->error;
+            
+                       } 
+
+                      }
+            
+
+                }
+            
+             }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,7 +150,7 @@
                     </div>
                 </form>
                 <div class="header-logo-wrapper col-auto p-0">
-                    <div class="logo-wrapper"><a href="dashboard.html"><img class="img-fluid"
+                    <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
                                 src="../assets/images/logo/logo.png" alt=""></a></div>
                     <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
                             data-feather="align-center"></i>
@@ -434,13 +506,13 @@
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="media profile-media"><img class="b-r-10"
                                     src="../assets/images/dashboard/profile.jpg" alt="">
-                                <div class="media-body"><span id="userProfile"></span>
-                                  <i class="middle fa fa-angle-down"></i>
+                                <div class="media-body"><span><?php echo $_SESSION['username']; ?></span>
+                                    <i class="middle fa fa-angle-down"></i>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="settings.html"><i data-feather="settings"></i><span>Settings</span></a></li>
-                                <li><a href="#" onclick="logOut()"><i data-feather="log-out"> </i><span>Log out</span></a></li>
+                                <li><a href="settings.php"><i data-feather="settings"></i><span>Settings</span></a></li>
+                                <li><a href="logout.php"><i data-feather="log-out"> </i><span>Log out</span></a></li>
                             </ul>
                         </li>
                     </ul>
@@ -463,20 +535,21 @@
             <!-- Page Sidebar Start-->
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="dashboard.html"><img class="img-fluid for-light"
+                    <div class="logo-wrapper"><a href="dashboard.php"><img class="img-fluid for-light"
                                 src="../assets/images/logo/nova.png" width="145" alt=""><img class="img-fluid for-dark"
                                 src="../assets/images/logo/nova.png" width="145" alt=""></a>
                         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
-                        <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="toggle-left">
+                        <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle"
+                                data-feather="toggle-left">
                             </i></div>
                     </div>
-                    <div class="logo-icon-wrapper"><a href="dashboard.html"><img class="img-fluid"
+                    <div class="logo-icon-wrapper"><a href="dashboard.php"><img class="img-fluid"
                                 src="../assets/images/logo/logo-icon.png" width="32" alt=""></a></div>
                     <nav class="sidebar-main">
                         <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
                         <div id="sidebar-menu">
                             <ul class="sidebar-links" id="simple-bar">
-                                <li class="back-btn"><a href="dashboard.html"><img class="img-fluid"
+                                <li class="back-btn"><a href="dashboard.php"><img class="img-fluid"
                                             src="../assets/images/logo/logo-icon.png" width="32" alt=""></a>
                                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                                             aria-hidden="true"></i></div>
@@ -488,7 +561,8 @@
                           </div>
                         </li> -->
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link" href="dashboard.html"><i data-feather="home"></i><span class="lan-3">Dashboard</span></a>
+                                    <a class="sidebar-link" href="dashboard.php"><i data-feather="home"></i><span
+                                            class="lan-3">Dashboard</span></a>
                                     <!-- <ul class="sidebar-submenu">
                             <li><a class="lan-4" href="index.html">Default</a></li>
                             <li><a class="lan-5" href="dashboard-02.html">Ecommerce</a></li>
@@ -527,8 +601,8 @@
                             <li><a href="projectcreate.html">Create new</a></li>
                           </ul>
                         </li> -->
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="transfer.html"><i
-                                            data-feather="send"> </i><span>Transfer</span></a></li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                        href="transfer.php"><i data-feather="send"> </i><span>Transfer</span></a></li>
                                 <!-- <li class="sidebar-list">
                           <label class="badge badge-info">Latest </label><a class="sidebar-link sidebar-title link-nav"
                             href="kanban.html"><i data-feather="monitor"> </i><span>kanban Board</span></a>
@@ -570,27 +644,31 @@
                             <li><a href="user-cards.html">Users Cards</a></li>
                           </ul>
                         </li> -->
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i class="fa fa-credit-card"
-                                  data-feather="credit-card"> </i><span>Bills Payment</span></a>
-                                  <ul class="sidebar-submenu">
-                                    <li><a href="cable.html">Cable TV</a></li>
-                                    <li><a href="electricity.html">Electricity</a></li>
-                                  </ul>
-                                </li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="airtime.html"><i
-                                            data-feather="trending-up"> </i><span>Airtime Topup</span></a></li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="data.html"><i
-                                            data-feather="wifi"> </i><span>Data Topup</span></a></li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="3"><i data-feather="dollar-sign"> </i><span>Loan</span></a>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                                            class="fa fa-credit-card" data-feather="credit-card"> </i><span>Bills
+                                            Payment</span></a>
+                                    <ul class="sidebar-submenu">
+                                        <li><a href="cable.html">Cable TV</a></li>
+                                        <li><a href="electricity.html">Electricity</a></li>
+                                    </ul>
                                 </li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="settings.html"><i data-feather="settings">
+                                        href="airtime.html"><i data-feather="trending-up"> </i><span>Airtime
+                                            Topup</span></a></li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                        href="data.html"><i data-feather="wifi"> </i><span>Data Topup</span></a></li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                        href="dashboard.html-basic.html"><i data-feather="dollar-sign">
+                                        </i><span>Loan</span></a>
+                                </li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                        href="settings.php"><i data-feather="settings">
                                         </i><span>Settings</span></a></li>
                                 <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
-                                        href="faqs.html"><i data-feather="help-circle"> </i><span>FAQS</span></a></li>
-                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" onclick="logOut()"><i
-                                            data-feather="log-out">
+                                        href="faqs.html"><i data-feather="help-circle"> </i><span>FAQS</span></a>
+                                </li>
+                                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                                        href="logout.php"><i data-feather="log-out">
                                         </i><span>Log Out</span></a></li>
                                 <!-- <li class="sidebar-main-title">
                           <div>
@@ -962,16 +1040,9 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-6">
-                                <h3>Transfer</h3>
+                                <h3>Add Beneficiary</h3>
                             </div>
-                            <div class="col-6">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html"> <i data-feather="home"></i></a>
-                                    </li>
-                                    <li class="breadcrumb-item">Ecommerce</li>
-                                    <li class="breadcrumb-item active">Payment Details</li>
-                                </ol>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -979,35 +1050,43 @@
                 <div class="container-fluid credit-card">
                     <div class="row">
                         <!-- Individual column searching (text inputs) Starts-->
-                        <div class="col-xxl-8 box-col-12">
+                        <div class="col-sm-12">
                             <div class="card">
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                            <form class="theme-form mega-form">
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="Account number" id="Acct" disabled>
+                                <div class="card-body btn-showcase">
+                                    <!-- Simple demo-->
+                                    <button class="btn btn-primary btn-air-primary btn-pill btn-lg" type="button" data-bs-toggle="modal" data-original-title="test"
+                                        data-bs-target="#exampleModal">Add Beneficiary</button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Enter your pin to confirm transaction?</h5>
+                                                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="tel" placeholder="Beneficiary's Account number"  id="acctNum" minlength="10" maxlength="10">
-                                                    
-                                                  </div>
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="text" placeholder="Beneficiary's Name"  disabled id="bName">
+                                                <div class="modal-body">
+                                                    <form class="theme-form" method="POST">
+                                                        <div class="form-group">
+                                                            <label class="col-form-label">Beneficiary's Name</label>
+                                                            <div class="form-input position-relative">
+                                                                <input class="form-control" type="text" name="beneficiary_name" required="" placeholder="Enter Beneficiary's Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label class="col-form-label">Beneficiary's Account No</label>
+                                                            <div class="form-input position-relative">
+                                                                <input class="form-control" type="text" name="beneficiary_acno" required="" placeholder="Enter Beneficiary's Account No">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-primary btn-pill" type="button" onclick="Cancel()" data-bs-dismiss="modal">Cancel</button>
+                                                            <button type="submit" name="add_beneficiary" class="btn btn-secondary btn-pill">Proceed</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="number" placeholder="Amount" id="Amnt">
-                                                </div>
-                                                <div class="card-footer text-center">
-                                                  <a class="btn btn-primary btn-pill btn-air-primary btn-lg" onclick="verifyUser()">Continue</a>
-                                                </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                        <div class="col-md-5 text-center"><img class="img-fluid"
-                                                src="../assets/images/ecommerce/transaction.png" alt=""></div>
                                     </div>
-                                </div>
                             </div>
                         </div>
 
@@ -1016,107 +1095,45 @@
                     </div>
                 </div>
             </div>
-            <!-- footer start-->
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 footer-copyright text-center">
-                            <p class="mb-0">Copyright 2022 © Novatify Fintech</p>
+                
+                <!-- footer start-->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2022 © Novatify Fintech</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
-    </div>
-    <script>
-      //Checking if user is logged in
-      let userCheck = JSON.parse(localStorage.getItem("loggedUdetails"))
-      var user = JSON.parse(localStorage.getItem("userDetails"))
-        if (userCheck == null) {
-          location.href = "login.html"
-        }
-
-        var loggedInUser = user.find((myDetails) => myDetails.mail == userCheck.mail)
-        var dLogU = JSON.parse(localStorage.getItem("loggedUdetails"))
-        userProfile.innerHTML = `${dLogU.firstName}`
+        <!-- latest jquery-->
+        <script src="../assets/js/jquery-3.5.1.min.js"></script>
+        <!-- Bootstrap js-->
+        <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- feather icon js-->
+        <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+        <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+        <!-- scrollbar js-->
+        <script src="../assets/js/scrollbar/simplebar.js"></script>
+        <script src="../assets/js/scrollbar/custom.js"></script>
+        <script src="../assets/js/hide-on-scroll.js"></script>
+        <!-- Sidebar jquery-->
+        <script src="../assets/js/config.js"></script>
+        <!-- Plugins JS start-->
+        <script src="../assets/js/sidebar-menu.js"></script>
+        <script src="../assets/js/tooltip-init.js"></script>
+        <!-- Plugins JS Ends-->
+        <!-- Theme js-->
+        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/theme-customizer/customizer.js"></script>
+        <!-- login js-->
+        <!-- Tawk.to Support -->
+        <script src="../assets/js/support.js"></script>
+        <!-- Plugin used-->
 
         
-        //var mail = eMail.value;
-        var loggedInUser = user.find((myDetails) => myDetails.mail == dLogU.mail)
-        var logedUser = user.indexOf(loggedInUser)     
-        Acct.value = `From Account: ${dLogU.acctNo}`
-        bName.innerHTML = user[verifiCate].firstName
-        //bName.value = `${dLogU.firstName}`
-         
-      function verifyUser() {
-      
-        //Account verification
-        var benAct = parseInt(Amnt.value)
-        vTrans = user.find((vTransaction) => vTransaction.acctNo == Amnt.value) 
-        //console.log(vTrans);
-        var verifiCate = user.indexOf(vTrans) +1
-        console.log(verifiCate);
-        userTrans = parseInt(user[verifiCate].defBal)
-        addUp = userTrans + benAct
-        user[verifiCate].defBal=addUp
-        sender = parseInt(user[logedUser].defBal)
-        subTract = sender - benAct
-        user[logedUser].defBal=subTract
-        console.log(subTract, addUp)
-        sd=JSON.stringify(user);
-        localStorage.setItem("userDetails",sd)
-        
-
-        // firstName = user[verifiCate].firstName
-        // lastName = user[verifiCate].lastName
-        // acctNo = user[verifiCate].acctNo
-        // phoneNumber = user[verifiCate].phoneNumber
-        // defBal = user[verifiCate].defBal
-        // var user = { mail, firstName, lastName, acctNo, phoneNumber, defBal }
-        // vTn =  localStorage.setItem("userDetails", JSON.stringify(user))
-        
-        // if (vTrans) {
-        //     alert("hello")
-        //   }
-          
-          
-          //bName.value = `${dLogU.firstName}`
-      }
-    </script>
-    <!-- latest jquery-->
-    <script src="../assets/js/jquery-3.5.1.min.js"></script>
-    <!-- Bootstrap js-->
-    <script src="../assets/js/bootstrap/bootstrap.bundle.min.js"></script>
-    <!-- feather icon js-->
-    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
-    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
-    <!-- scrollbar js-->
-    <script src="../assets/js/scrollbar/simplebar.js"></script>
-    <script src="../assets/js/scrollbar/custom.js"></script>
-    <script src="../assets/js/hide-on-scroll.js"></script>
-    <!-- Sidebar jquery-->
-    <script src="../assets/js/config.js"></script>
-    <!-- Plugins JS start-->
-    <script src="../assets/js/sidebar-menu.js"></script>
-    <script src="../assets/js/tooltip-init.js"></script>
-    <!-- Plugins JS Ends-->
-    <!-- Tawk.to Support -->
-    <script src="../assets/js/support.js"></script>
-    <!-- Theme js-->
-    <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/theme-customizer/customizer.js"></script>
-    <!-- login js-->
-    <!-- Plugin used-->
-
-    <script>
-        function logOut() {
-            if (confirm("Are You Sure You Want To Logout?")) {
-                window.close("transfer.html");
-              window.open("login.html");
-            }
-
-        }
-    </script>
 </body>
 
 </html>
